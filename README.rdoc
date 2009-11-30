@@ -1,32 +1,29 @@
 = diffeq
 
-* http://github.com/#{github_username}/#{project_name}
+* http://diffeq.rubyforge.org
 
 == DESCRIPTION:
 
-FIX (describe your package)
+The DiffEQ package is for symbolic calculation with formulas in time,
+and for setup and integration of systems of Ordinary Differential
+Equations (ODEs).
 
-== FEATURES/PROBLEMS:
-
-* FIX (list of features or problems)
+It's written in pure Ruby, and is designed for easy of use, not for
+performance on large systems.
 
 == SYNOPSIS:
 
   FIX (code sample of usage)
 
-== REQUIREMENTS:
-
-* FIX (list of requirements)
-
 == INSTALL:
 
-* FIX (sudo gem install, anything else)
+sudo gem install diffeq
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2009 FIXME full name
+Copyright (c) 2007-2009 Noah Gibbs
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
