@@ -3,7 +3,6 @@
 # integration of the integrator library.
 
 require "rubygems"
-require "log4r"
 require "diffeq/integrator"
 require "diffeq/rkqs"
 require "diffeq/variable"
@@ -16,10 +15,10 @@ class Advancer
   H_START = 0.1
   H_MIN = 0.0001
 
-  include Log4r
+  attr_accessor :logger
 
   def initialize(varset)
-    @logger = Logger['diffeq']
+    @logger ||= DiffEQ.shared_logger
 
     @calculated = nil
     @deriv_proc = proc { |x,y| raise "Need to call calculate() first!" }
@@ -88,6 +87,26 @@ class Advancer
 
     values
   end
+
+  private
+
+  # This function takes a hash table where each key is a node to
+  # be topologically sorted, and each value is a list of the
+  # form [dep1, dep2, dep3] of dependencies of the first value.
+  # The returned list is the set of hash keys in topologically
+  # sorted order.
+  #
+  def topsort_hash(hash) #:nodoc:
+    ts = TSortable.new()
+  
+    hash.each_pair do |hash, val|
+      ts[hash] = val
+    end
+  
+    ts.tsort
+  end
+
+  public
 
   # Return the list of variables, sorted by their dependencies on each
   # other.  Varlist is a list of DiffEQ::Variable objects.
@@ -269,22 +288,6 @@ class TSortable < Hash #:nodoc:
   def tsort_each_child(node, &block)
     fetch(node).each(&block)
   end
-end
-
-# This function takes a hash table where each key is a node to
-# be topologically sorted, and each value is a list of the
-# form [dep1, dep2, dep3] of dependencies of the first value.
-# The returned list is the set of hash keys in topologically
-# sorted order.
-#
-def topsort_hash(hash) #:nodoc:
-  ts = TSortable.new()
-
-  hash.each_pair do |hash, val|
-    ts[hash] = val
-  end
-
-  ts.tsort
 end
 
 end  # module DiffEQ

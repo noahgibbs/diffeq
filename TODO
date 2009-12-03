@@ -1,0 +1,6 @@
+* More logging, especially in SimpleExpression and Integrator
+
+Old, from Advancer:
+  * Keep track of most recent step (h) value and pass it from call to call
+    of advance()
+  * Have the advancer send just DiffEQs to plotter, or all variables

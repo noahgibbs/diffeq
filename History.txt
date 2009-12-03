@@ -1,4 +1,8 @@
-=== 0.0.1 2009-11-25
+=== 0.0.3 2009-11-09
 
-* 1 major enhancement:
-  * Initial release
+* Port to Ruby 1.9
+* Move to GitHub and GitHub pages
+
+=== 0.0.1-0.0.2 2009-10-07
+
+RubyForge releases

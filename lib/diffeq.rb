@@ -1,5 +1,10 @@
-$:.unshift(File.dirname(__FILE__)) unless
-  $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
+def include_dir(directory)
+  $:.unshift(directory) unless
+    $:.include?(directory) || $:.include?(File.expand_path(directory))
+end
+
+include_dir File.dirname __FILE__
+#include_dir File.join(File.dirname(__FILE__), "diffeq")
 
 module DiffEQ
   VERSION = '0.0.3'

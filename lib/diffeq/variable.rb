@@ -1,8 +1,12 @@
-require "simpleexpression"
-require "log4r"
+require "diffeq/simple_expression"
 require "yaml"
+require "logger"
 
 module DiffEQ
+
+def self.shared_logger
+  DiffEQ::Variable.shared_logger
+end
 
 # Set VarSet objects up for YAML input and output
 # Still needed?
@@ -12,25 +16,18 @@ YAML.add_domain_type(VarObjectDomain, "varset") { |type, val|
 }
 
 class VarSet
-  include Log4r
-
   def to_yaml_type
     VarObjectDomain + "/varset"
   end
+
+  attr_accessor :logger
 
   private
 
   def initialize()
     @var_set = {}
 
-    print "Starting Logger initialization!\n"
-    diffeq_logger = Logger['diffeq']
-    diffeq_logger = Logger.new 'diffeq' unless diffeq_logger
-    diffeq_logger.outputters = Outputter.new 'delogfile',
-                                        :filename => 'diffeq.log', :trunc => 0
-    #diffeq_logger.outputters = Outputter.stderr
-
-    @logger = diffeq_logger
+    @logger ||= DiffEQ.shared_logger
   end
 
   public
@@ -102,10 +99,15 @@ class Variable
 
   VARIABLE_TYPES = [ :Simple, :DiffEQ, :NoInfo, :Derived, :Searching ]
 
-  include Log4r
+  attr_accessor :logger
+
+  def self.shared_logger
+    @@shared_logger ||= Logger.new(STDERR)
+    @@shared_logger
+  end
 
   def initialize(name, value, parent)
-    @logger = Logger['diffeq']
+    @logger ||= DiffEQ.shared_logger
 
     Variable.legal_name?(name) or
       raise "Illegal variable name '#{name}'!"
