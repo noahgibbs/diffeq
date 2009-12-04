@@ -6,6 +6,7 @@ require "rubygems"
 require "diffeq/integrator"
 require "diffeq/rkqs"
 require "diffeq/variable"
+require "diffeq/plottable"
 require "tsort"
 
 module DiffEQ
@@ -14,6 +15,8 @@ class Advancer
   EPSILON = 0.001
   H_START = 0.1
   H_MIN = 0.0001
+
+  include Plottable
 
   attr_accessor :logger
 
@@ -98,9 +101,9 @@ class Advancer
   #
   def topsort_hash(hash) #:nodoc:
     ts = TSortable.new()
-  
-    hash.each_pair do |hash, val|
-      ts[hash] = val
+
+    hash.each_pair do |inner_hash, val|
+      ts[inner_hash] = val
     end
   
     ts.tsort
@@ -243,7 +246,7 @@ class Advancer
       yvec = @yzero
     end
 
-    if (values.nil? or values.empty?) and not (yvec.nil? or yvec.size == 0)
+    if (values.nil? or values.empty?) && !(yvec.nil? or yvec.size == 0)
       values = yvec_to_value_table(t1, yvec)
     elsif yvec.nil? or yvec.size == 0
       yvec = Vector.elements([nil] * @diffeqs.size)

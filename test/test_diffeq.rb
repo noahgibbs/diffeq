@@ -2,8 +2,8 @@ require File.dirname(__FILE__) + '/test_helper.rb'
 
 class TestDiffeq < Test::Unit::TestCase
 
-  PLOTTERFILE = "graphout.gnuplot"
-  PLOTTERFILE2 = "graphout_2.gnuplot"
+  PLOTTERFILE = "graphout.yaml"
+  PLOTTERFILE2 = "graphout_2.yaml"
 
   def setup
     File.delete(PLOTTERFILE) if File.exist?(PLOTTERFILE)
@@ -91,6 +91,7 @@ class TestDiffeq < Test::Unit::TestCase
     @advancer.stop_plotter
 
     assert(File.exist?(PLOTTERFILE))
+    File.delete(PLOTTERFILE) if File.exist?(PLOTTERFILE)
   end
 
   def test_plotter_2
@@ -116,6 +117,7 @@ class TestDiffeq < Test::Unit::TestCase
     @advancer.stop_plotter
 
     assert(File.exist?(PLOTTERFILE2))
+    File.delete(PLOTTERFILE2) if File.exist?(PLOTTERFILE2)
   end
 
 end

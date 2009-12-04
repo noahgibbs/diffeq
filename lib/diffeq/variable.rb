@@ -102,7 +102,11 @@ class Variable
   attr_accessor :logger
 
   def self.shared_logger
-    @@shared_logger ||= Logger.new(STDERR)
+    @@shared_logger ||= nil
+    unless @@shared_logger
+      @@shared_logger = Logger.new(STDERR)
+      @@shared_logger.level = Logger::WARN
+    end
     @@shared_logger
   end
 
