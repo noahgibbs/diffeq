@@ -1,7 +1,7 @@
 require "diffeq"
 require "ftools"      # for File.exist?
 
-PLOTTERFILE = "volterra.gnuplot"
+PLOTTERFILE = "volterra.yaml"
 
 varset = DiffEQ::VarSet.new
 advancer = DiffEQ::Advancer.new(varset)
