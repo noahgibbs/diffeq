@@ -17,6 +17,7 @@ sudo gem install diffeq
 
 == SYNOPSIS:
 
+<code>
 require "diffeq"
 require "ftools"      # for File.exist?
 
@@ -52,6 +53,7 @@ yzero = advancer.get_yzero_values
 values, yvec = advancer.advance(values, yvec, 0.0, 100.0)
 advancer.write_plotter_file(PLOTTERFILE)
 advancer.stop_plotter
+</code>
 
 == LICENSE:
 
