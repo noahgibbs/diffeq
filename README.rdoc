@@ -29,31 +29,21 @@ advancer = DiffEQ::Advancer.new(varset)
 
 File.delete(PLOTTERFILE) if File.exist?(PLOTTERFILE)
 
-# http://en.wikipedia.org/wiki/Lotka-Volterra_equation, see volterra.rb for details.
+# http://en.wikipedia.org/wiki/Lotka-Volterra_equation, or see volterra.rb for more comments.
 
 preyvar = varset.add_variable("x", "")
 
 predvar = varset.add_variable("y", "")
 
-# These are initial populations of predator and prey
+preyvar.add_known(0.0, 300.0)
 
-preyvar.add_known(0.0, 30.0)
-
-predvar.add_known(0.0, 4.0)
-
-alpha = 1.0
-
-beta = 0.2
-
-delta = 0.3
-
-gamma = 0.8
+predvar.add_known(0.0, 71.0)
 
 # Set derivatives for variables x and y
 
-varset.add_variable("x_D1", "#{alpha} * x - #{beta} * x * y")
+varset.add_variable("x_D1", "1.4 * x - 2.1 * x * y")
 
-varset.add_variable("y_D1", "#{delta} * x * y - #{gamma} * y")
+varset.add_variable("y_D1", "0.8 * x * y - 0.4 * y")
 
 # This does the integration from t=0 to t=100, and writes the values to a file
 
