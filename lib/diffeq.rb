@@ -10,11 +10,12 @@ module DiffEQ
   VERSION = '0.0.3'
 end
 
+require "diffeq/expression_parser"
 require "diffeq/simple_expression"
 require "diffeq/integrator"
 require "diffeq/adaptive"
 require "diffeq/rkck"
 require "diffeq/rkqs"
 require "diffeq/variable"
-require "diffeq/advancer"
 require "diffeq/plottable"
+require "diffeq/advancer"

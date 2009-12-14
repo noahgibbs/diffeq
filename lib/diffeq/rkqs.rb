@@ -9,8 +9,6 @@
 #
 
 require "matrix"
-require "rkck"
-require "adaptive"
 
 # This is the adaptive Cash-Karp embedded Runge-Kutta integrator.  It
 # inherits from the fixed-step version, and calculates the per-step

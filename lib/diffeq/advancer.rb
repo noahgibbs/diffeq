@@ -3,10 +3,6 @@
 # integration of the integrator library.
 
 require "rubygems"
-require "diffeq/integrator"
-require "diffeq/rkqs"
-require "diffeq/variable"
-require "diffeq/plottable"
 require "tsort"
 
 module DiffEQ

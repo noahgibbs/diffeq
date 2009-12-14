@@ -1,4 +1,3 @@
-require "diffeq/simple_expression"
 require "yaml"
 require "logger"
 

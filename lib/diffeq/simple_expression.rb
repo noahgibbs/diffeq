@@ -6,8 +6,6 @@
 
 $:.unshift File.dirname(__FILE__)
 
-require "diffeq/expression_parser"
-
 module DiffEQ
 
 class SimpleExpression

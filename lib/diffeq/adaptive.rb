@@ -8,8 +8,6 @@
 
 require "matrix"
 
-require "integrator"
-
 # This is the top-level driver, with logging, used by the more complex
 # integrators in "Numerical Methods in C", second edition.  Code is
 # adapted from C, of course.

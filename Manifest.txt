@@ -9,6 +9,7 @@ lib/diffeq/adaptive.rb
 lib/diffeq/advancer.rb
 lib/diffeq/expression_parser.rb
 lib/diffeq/integrator.rb
+lib/diffeq/plottable.rb
 lib/diffeq/rkck.rb
 lib/diffeq/rkqs.rb
 lib/diffeq/simple_expression.rb
@@ -20,3 +21,4 @@ test/test_diffeq.rb
 test/test_helper.rb
 test/test_integrator.rb
 test/test_simple_expression.rb
+volterra.rb
