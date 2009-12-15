@@ -7,7 +7,7 @@ include_dir File.dirname __FILE__
 #include_dir File.join(File.dirname(__FILE__), "diffeq")
 
 module DiffEQ
-  VERSION = '0.0.3'
+  VERSION = '0.0.4'
 end
 
 require "diffeq/expression_parser"
